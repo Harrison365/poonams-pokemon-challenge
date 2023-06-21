@@ -110,7 +110,6 @@ function seed() {
       })
       //Populate move_junction table
       .then(() => {
-        console.log(moveLookup);
         const formattedMoves = [];
         const moveNumbers = pokemonObj.moves.forEach((pokemonsMoves, index) => {
           pokemonsMoves.forEach((move) => {
@@ -131,7 +130,7 @@ function seed() {
           p.weight,
           LEFT(p.sprite, 20) AS sprite,
           ARRAY_AGG(DISTINCT pt.type) AS types,
-          ARRAY_AGG(pm.move) AS moves
+          ARRAY_AGG(DISTINCT pm.move) AS moves
         FROM
           pokemon_info p
         JOIN
@@ -150,5 +149,5 @@ function seed() {
       })
   );
 }
-//now same for moves
+
 module.exports = { seed };

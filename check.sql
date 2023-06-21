@@ -7,7 +7,7 @@ SELECT
   p.weight,
   LEFT(p.sprite, 20) AS sprite,
   ARRAY_AGG(DISTINCT pt.type) AS types,
-  ARRAY_AGG(pm.move) AS moves
+  ARRAY_AGG(DISTINCT pm.move) AS moves
 FROM
   pokemon_info p
 JOIN
